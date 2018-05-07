@@ -1,0 +1,12 @@
+<div class="container-fluid" style="margin-top: 5% !important">
+  <div style="width:25% !important;height: 70% !important;margin-top: 5% !important;margin-left: 12%">
+    <h6>Select StartDate-EndDate: </h6>
+    <input type="text" name="daterangeInput" daterangepicker  (selected)="selectedDate($event)" />
+  </div>
+  <div *ngIf="chartCollection" style="width:65% !important;height: 70% !important;margin-top: 1% !important;margin-left: 28%">
+    <h3>Risk</h3>
+    <br>
+    <canvas id="canvas">{{chartCollection}}</canvas>
+  </div>
+  </div>
+  

@@ -1,0 +1,16 @@
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+<div class="row" style="margin-top: 5% !important" >
+  <div class="col" style="width:25% !important;height: 70% !important;margin-top: 5% !important;margin-left: 12%">
+    <h6>Select StartDate-EndDate: </h6>
+    <input type="text" name="daterangeInput" daterangepicker (selected)="selectedDate($event)" />
+    <br/>
+    Margin%:
+    <button (click)="applyFilter(0.5)" style="width:64px;height:26px;text-align: center;margin: 4px">>0.5%</button>
+    <button (click)="applyFilter(1)" style="width:64px;height:26px;text-align: center;margin: 4px">>1%</button>
+    
+  </div>
+  <div class="col" *ngIf="chartCollection" style="width:63% !important;height: 70% !important;margin-top: 1% !important;margin-left: 28%">
+    <h3>Margin</h3>
+    <canvas id="canvas" >{{chartCollection}}</canvas>
+  </div>
+</div>
