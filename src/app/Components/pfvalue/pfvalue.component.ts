@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DaterangepickerConfig } from 'ng2-daterangepicker';
+import {TilesComponent} from '../tiles/tiles.component';
 
 @Component({
   selector: 'app-pfvalue',
@@ -8,6 +9,7 @@ import { DaterangepickerConfig } from 'ng2-daterangepicker';
 })
 export class PfvalueComponent implements OnInit {
   message: string;
+  
   constructor() { 
     this.message = "No Data Available For Porfolio..";
   }

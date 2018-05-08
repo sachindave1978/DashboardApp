@@ -14,6 +14,7 @@ import { DaterangepickerConfig } from 'ng2-daterangepicker';
 })
 export class AppComponent {
   title = 'app';
+  currentYear:number;
   displayMsg:boolean=false;
   objRiskData: RiskMonitorEntity;
   startDate: any;
@@ -39,6 +40,8 @@ export class AppComponent {
   
   ngOnInit(){    
     this.riskMonitorService.getRiskMonitor(this.startDate, this.endDate).subscribe((res) => {
+      var dt = new Date();
+      this.currentYear = dt.getFullYear();
       this.TotalMargin = res.TotalMargin;
       this.TotalMarginPercent = res.TotalMarginPercent;
 

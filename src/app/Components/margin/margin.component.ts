@@ -5,6 +5,7 @@ import {RiskMonitorService} from '../../Service/RiskMonitor.service'
 import {DataServiceService} from '../../Service/data-service.service'
 import * as Chart from 'chart.js';
 import { DaterangepickerConfig } from 'ng2-daterangepicker';
+import {TilesComponent} from '../tiles/tiles.component';
 
 @Component({
   selector: 'app-margin',
@@ -19,8 +20,7 @@ export class MarginComponent implements OnInit {
   chart:any;
   chartCollection=[];
   totalMarginPercentFilter:number = 0;
-
- 
+  
   constructor(private riskMonitorService: RiskMonitorService, private ds:DataServiceService,
     private daterangepickerOptions: DaterangepickerConfig) { 
     this.startDate = new Date().toLocaleDateString("en-US");
@@ -41,7 +41,7 @@ export class MarginComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.initializeMarginChart();
+    
   }
 
   applyFilter(item)
@@ -63,6 +63,8 @@ export class MarginComponent implements OnInit {
 
       var netIncome = res['objMarginData'].map(res=>res.NetIncome)
       var totalRevenue = res['objMarginData'].map(res=>res.TotalRevenue);
+      var MarginPercent = res['objMarginData'].map(res=>res.MarginPercent);
+
       var totalMarginPercent=[];
       for(var i=0; i<netIncome.length;i++){
         if(this.totalMarginPercentFilter>0)
@@ -93,14 +95,23 @@ export class MarginComponent implements OnInit {
                 label:'Net Income',
                 data:netIncomeCollection,
                 borderColor:'#3cba9f',
-                fill:false
+                fill:false,
+                yAxisID:'1'
               },
               {
                 label:'Total Revenue',
                 data:totalRevenueCollection,
-                borderColor:'#ffcc00',
+                borderColor:'#ff0000',
                 fill:false,
                 type:'line'
+              },
+              {
+                label:'%  Margin',
+                data:MarginPercent,
+                borderColor:'#00ff00',
+                fill:false,
+                type:'line',
+                yAxisID:'2'
               }
             ]
           },
@@ -110,10 +121,29 @@ export class MarginComponent implements OnInit {
             },
             scales:{
               xAxes:[{
-                  display:true
+                  display:true,
+                  scaleLabel: {
+                    display: true,
+                    labelString: 'Date'
+                  }
                 }],
               yAxes:[{
-                display:true
+                display:true,
+                scaleLabel: {
+                  display: true,
+                  labelString: 'Net Income'
+                 },
+                 id:'1',
+                 position:'left',
+                },
+                {
+                  display:true,
+                  scaleLabel: {
+                    display: true,
+                    labelString: '%Margin'
+                  },
+                  id:'2',
+                  position:'right',
                 }]              
             }
           }        

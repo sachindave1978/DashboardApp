@@ -5,6 +5,7 @@ import {RiskMonitorService} from '../../Service/RiskMonitor.service';
 import {DataServiceService} from '../../Service/data-service.service'
 import * as Chart from 'chart.js';
 import { DaterangepickerConfig } from 'ng2-daterangepicker';
+import {TilesComponent} from '../tiles/tiles.component';
 
 @Component({
   selector: 'app-risk',
@@ -19,7 +20,7 @@ export class RiskComponent implements OnInit {
   tempDate: any;
   chart:any;
   chartCollection=[];
-  
+ 
   constructor( private riskMonitorService: RiskMonitorService, private ds:DataServiceService,
     private daterangepickerOptions: DaterangepickerConfig) { 
     this.startDate = new Date().toLocaleDateString("en-US");
@@ -30,6 +31,7 @@ export class RiskComponent implements OnInit {
       start:this.startDate,
       end:this.endDate
     };
+    this.initializeMarginChart();
   }
 
   public selectedDate(value: any) {
@@ -37,11 +39,15 @@ export class RiskComponent implements OnInit {
     this.endDate = value.start._d.toLocaleDateString("en-US");
     this.initializeMarginChart();
   }
-
-  ngOnInit() {
-    this.initializeMarginChart();     
+  
+  buttonClick(item){
+    console.log("button clicked!!");
+    console.log(item);
   }
 
+  ngOnInit() {
+  }
+  
   initializeMarginChart(){
     if(this.chart)
       this.chart.destroy();
@@ -82,7 +88,7 @@ export class RiskComponent implements OnInit {
               {
                 label:'totalRisk2',
                 data:totalRisk2Collection,
-                borderColor:'#ffcc00',
+                borderColor:'#ff0000',
                 fill:false,
                 type:'line'
               }
@@ -94,10 +100,18 @@ export class RiskComponent implements OnInit {
             },
             scales:{
               xAxes:[{
-                  display:true
+                  display:true,
+                  scaleLabel: {
+                    display: true,
+                    labelString: 'Date'
+                  }
                 }],
               yAxes:[{
-                display:true
+                display:true,
+                 scaleLabel: {
+                   display: true,
+                   labelString: 'Risk1'
+                  }
                 }]              
             }
           }        

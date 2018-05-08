@@ -4,7 +4,7 @@ export class MarginEntity {
     TotalRevenue: number;
     TotalExpenses: number;
     NetIncome: number;
-
+    MarginPercent: number;
     constructor() {
     }
 }

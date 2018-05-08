@@ -13,6 +13,7 @@ import { ExposureComponent } from '../app/Components/exposure/exposure.component
 import { PfvalueComponent } from '../app/Components/pfvalue/pfvalue.component';
 import { Daterangepicker } from 'ng2-daterangepicker';
 import { DataServiceService } from './Service/data-service.service';
+import { TilesComponent } from '../app/Components/tiles/tiles.component';
 
 const appRoutes: Routes = [
   { path: '', component: AppComponent },
@@ -28,7 +29,8 @@ const appRoutes: Routes = [
     MarginComponent,
     RiskComponent,
     ExposureComponent,
-    PfvalueComponent
+    PfvalueComponent,
+    TilesComponent
   ],
   imports: [
     RouterModule.forRoot(

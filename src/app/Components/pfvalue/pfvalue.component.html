@@ -1,3 +1,13 @@
-<div style="width:65% !important;height: 70% !important;margin-top: 10% !important;margin-left: 28%">
-  <h3>{{message}}</h3>
-</div>>
+<div class="row" style="margin-top: 5% !important;margin-right: 0%; margin-left:0%">
+  <div class="col-sm-4" style="width:30% !important;height: 70% !important;margin-top: 5% !important;margin-left: 2%">
+    <h4>Select StartDate-EndDate: </h4>
+    <input type="text" name="daterangeInput" daterangepicker  (selected)="selectedDate($event)" />
+    <br/>
+    <app-tiles></app-tiles>
+  </div>
+  <div class="col-sm-4" style="width:65% !important;height: 70% !important;margin-top: 5% !important">
+    <h3>Portfolio Value</h3>
+    <br/>
+    <h5 style="color:brown">{{message}}</h5>
+  </div>
+</div>
